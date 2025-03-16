@@ -44,13 +44,14 @@ class ValenceElement:
 
     registry: ClassVar[list[ValenceElement]] = []
     symbol_dictionary: ClassVar[dict[str, int]] = {}
-    element_valence_dictionary: ClassVar[dict[tuple[Element, int], int]] = {}
+    composition_dictionary: ClassVar[dict[tuple[Element, int], int]] = {}
     _lock: ClassVar[threading.Lock] = threading.Lock()
 
     index: int
     data: ValenceElementData
     element: Element
     valence: int
+    composition: tuple[Element, int]
     symbol: str
 
     def __new__(
@@ -96,9 +97,9 @@ class ValenceElement:
                 return cls.registry[cls.symbol_dictionary[identifier]]
 
             if isinstance(identifier, tuple):
-                if identifier not in cls.element_valence_dictionary:
+                if identifier not in cls.composition_dictionary:
                     raise KeyError(f"价态组合不存在: '{identifier}'")
-                return cls.registry[cls.element_valence_dictionary[identifier]]
+                return cls.registry[cls.composition_dictionary[identifier]]
 
             raise TypeError("无效标识符类型，应为int/str/tuple[Element, int]")
 
@@ -114,17 +115,15 @@ class ValenceElement:
                     f"符号冲突: {instance.symbol}，已用于索引 {existing_index}"
                 )
 
-            if (instance.element, instance.valence) in cls.element_valence_dictionary:
-                existing_index = cls.element_valence_dictionary[instance.symbol]
+            if instance.composition in cls.composition_dictionary:
+                existing_index = cls.composition_dictionary[instance.composition]
                 raise ValueError(
                     f"价态重复: {instance.symbol}，已用于索引 {existing_index}"
                 )
 
             cls.registry.append(instance)
             cls.symbol_dictionary[instance.symbol] = new_index
-            cls.element_valence_dictionary[(instance.element, instance.valence)] = (
-                new_index
-            )
+            cls.composition_dictionary[(instance.element, instance.valence)] = new_index
             return instance
 
     def generate_symbol(self) -> str:
@@ -151,7 +150,7 @@ class ValenceElement:
         self.data = data
         self.element = data.element
         self.valence = data.valence
-
+        self.composition = (self.element, self.valence)
         self.symbol = self.generate_symbol()
 
     def __repr__(self) -> str:
@@ -188,7 +187,7 @@ class ValenceElement:
         with cls._lock:
             cls.registry.clear()
             cls.symbol_dictionary.clear()
-            cls.element_valence_dictionary.clear()
+            cls.composition_dictionary.clear()
 
 
 if __name__ == "__main__":
