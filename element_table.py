@@ -1,71 +1,82 @@
-from element import ElementData, Element 
-from valence_element import ValenceElementData
+from element import Element, ElementData
+from valence_element import ValenceElement, ValenceElementData
 
-SIMPLE_ELEMENTS = [
-    ElementData("H", "Hydrogen", 1),
-    ElementData("He", "Helium", 4),
-    ElementData("C", "Carbon", 12),
-    ElementData("N", "Nitrogen", 14),
-    ElementData("O", "Oxygen", 16),
-    ElementData("Na", "Sodium", 23),
-    ElementData("Mg", "Magnesium", 24),
-    ElementData("Al", "Aluminum", 27),
-    ElementData("P", "Phosphorus", 31),
-    ElementData("S", "Sulfur", 32),
-    ElementData("Cl", "Chlorine", 35.5),
-    ElementData("K", "Potassium", 39),
-    ElementData("Ca", "Calcium", 40),
-    ElementData("Fe", "Iron", 56),
-    ElementData("Cu", "Copper", 64),
-    ElementData("Zn", "Zinc", 65),
-    ElementData("Ag", "Silver", 108),
-    ElementData("Ba", "Barium", 137),
-    ElementData("Au", "Gold", 197),
-    ElementData("Hg", "Mercury", 201),
-]
-SIMPLE_VALENCE_ELEMENTS = [
-    # 单质零价态
-    ValenceElementData(Element("H"), 0, None, "Hydrogen(0)"),
-    ValenceElementData(Element("He"), 0, None, "Helium(0)"),
-    ValenceElementData(Element("C"), 0, None, "Carbon(0)"),
-    ValenceElementData(Element("N"), 0, None, "Nitrogen(0)"),
-    ValenceElementData(Element("O"), 0, None, "Oxygen(0)"),
-    ValenceElementData(Element("Mg"), 0, None, "Magnesium(0)"),
-    ValenceElementData(Element("Al"), 0, None, "Aluminum(0)"),
-    ValenceElementData(Element("P"), 0, None, "Phosphorus(0)"),
-    ValenceElementData(Element("S"), 0, None, "Sulfur(0)"),
-    ValenceElementData(Element("Cl"), 0, None, "Chlorine(0)"),
-    ValenceElementData(Element("Fe"), 0, None, "Iron(0)"),
-    ValenceElementData(Element("Cu"), 0, None, "Copper(0)"),
-    ValenceElementData(Element("Zn"), 0, None, "Zinc(0)"),
-    ValenceElementData(Element("Ag"), 0, None, "Silver(0)"),
-    ValenceElementData(Element("Ba"), 0, None, "Barium(0)"),
-    ValenceElementData(Element("Au"), 0, None, "Gold(0)"),
-    ValenceElementData(Element("Hg"), 0, None, "Mercury(0)"),
-    
-    # 原价态条目
-    ValenceElementData(Element("H"), +1, None, "Hydrogen(I)"),
-    ValenceElementData(Element("C"), +2, None, "Carbon(II)"),
-    ValenceElementData(Element("C"), +4, None, "Carbon(IV)"),
-    ValenceElementData(Element("C"), -4, None, "Carbon(-IV)"),
-    ValenceElementData(Element("N"), -3, None, "Nitrogen(-III)"),
-    ValenceElementData(Element("N"), +5, None, "Nitrogen(V)"),
-    ValenceElementData(Element("O"), -2, None, "Oxygen(-II)"),
-    ValenceElementData(Element("Na"), +1, None, "Sodium(I)"),
-    ValenceElementData(Element("Mg"), +2, None, "Magnesium(II)"),
-    ValenceElementData(Element("Al"), +3, None, "Aluminum(III)"),
-    ValenceElementData(Element("P"), +5, None, "Phosphorus(V)"),
-    ValenceElementData(Element("S"), +4, None, "Sulfur(IV)"),
-    ValenceElementData(Element("S"), +6, None, "Sulfur(VI)"),
-    ValenceElementData(Element("Cl"), -1, None, "Chlorine(-I)"),
-    ValenceElementData(Element("K"), +1, None, "Potassium(I)"),
-    ValenceElementData(Element("Ca"), +2, None, "Calcium(II)"),
-    ValenceElementData(Element("Fe"), +2, None, "Iron(II)"),
-    ValenceElementData(Element("Fe"), +3, None, "Iron(III)"),
-    ValenceElementData(Element("Cu"), +1, None, "Copper(I)"),
-    ValenceElementData(Element("Cu"), +2, None, "Copper(II)"),
-    ValenceElementData(Element("Zn"), +2, None, "Zinc(II)"),
-    ValenceElementData(Element("Ag"), +1, None, "Silver(I)"),
-    ValenceElementData(Element("Ba"), +2, None, "Barium(II)"),
-    ValenceElementData(Element("Hg"), +2, None, "Mercury(II)"),
-]
+
+# List of simple elements
+def SIMPLE_ELEMENTS():
+    return [
+        ElementData("H", 1),
+        ElementData("He", 4),
+        ElementData("C", 12),
+        ElementData("N", 14),
+        ElementData("O", 16),
+        ElementData("Na", 23),
+        ElementData("Mg", 24),
+        ElementData("Al", 27),
+        ElementData("P", 31),
+        ElementData("S", 32),
+        ElementData("Cl", 35.5),
+        ElementData("K", 39),
+        ElementData("Ca", 40),
+        ElementData("Fe", 56),
+        ElementData("Cu", 64),
+        ElementData("Zn", 65),
+        ElementData("Ag", 108),
+        ElementData("Ba", 137),
+        ElementData("Au", 197),
+        ElementData("Hg", 201),
+    ]
+
+
+# List of valence elements
+def SIMPLE_VALENCE_ELEMENTS():
+    return [
+        # Zero-valence elements
+        ValenceElementData(Element("H"), 0),
+        ValenceElementData(Element("He"), 0),
+        ValenceElementData(Element("C"), 0),
+        ValenceElementData(Element("N"), 0),
+        ValenceElementData(Element("O"), 0),
+        ValenceElementData(Element("Mg"), 0),
+        ValenceElementData(Element("Al"), 0),
+        ValenceElementData(Element("P"), 0),
+        ValenceElementData(Element("S"), 0),
+        ValenceElementData(Element("Cl"), 0),
+        ValenceElementData(Element("Fe"), 0),
+        ValenceElementData(Element("Cu"), 0),
+        ValenceElementData(Element("Zn"), 0),
+        ValenceElementData(Element("Ag"), 0),
+        ValenceElementData(Element("Ba"), 0),
+        ValenceElementData(Element("Au"), 0),
+        ValenceElementData(Element("Hg"), 0),
+        # Valence elements
+        ValenceElementData(Element("H"), +1),
+        ValenceElementData(Element("C"), +2),
+        ValenceElementData(Element("C"), +4),
+        ValenceElementData(Element("C"), -4),
+        ValenceElementData(Element("N"), -3),
+        ValenceElementData(Element("N"), +5),
+        ValenceElementData(Element("O"), -2),
+        ValenceElementData(Element("Na"), +1),
+        ValenceElementData(Element("Mg"), +2),
+        ValenceElementData(Element("Al"), +3),
+        ValenceElementData(Element("P"), +5),
+        ValenceElementData(Element("S"), +4),
+        ValenceElementData(Element("S"), +6),
+        ValenceElementData(Element("Cl"), -1),
+        ValenceElementData(Element("K"), +1),
+        ValenceElementData(Element("Ca"), +2),
+        ValenceElementData(Element("Fe"), +2),
+        ValenceElementData(Element("Fe"), +3),
+        ValenceElementData(Element("Cu"), +1),
+        ValenceElementData(Element("Cu"), +2),
+        ValenceElementData(Element("Zn"), +2),
+        ValenceElementData(Element("Ag"), +1),
+        ValenceElementData(Element("Ba"), +2),
+        ValenceElementData(Element("Hg"), +2),
+    ]
+
+
+def load_simple_elements():
+    Element.load_data(SIMPLE_ELEMENTS())
+    ValenceElement.load_data(SIMPLE_VALENCE_ELEMENTS())
